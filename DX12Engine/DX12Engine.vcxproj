@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Graphics\descriptorheap.h" />
     <ClInclude Include="Graphics\core.h" />
-    <ClInclude Include="resources.h" />
+    <ClInclude Include="Graphics\resources.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Graphics\descriptorheap.cpp" />
     <ClCompile Include="Graphics\core.cpp" />
-    <ClCompile Include="resources.cpp" />
+    <ClCompile Include="Graphics\resources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -158,6 +160,7 @@
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\directxtk12_uwp.2022.10.18.1\build\native\directxtk12_uwp.targets" Condition="Exists('..\packages\directxtk12_uwp.2022.10.18.1\build\native\directxtk12_uwp.targets')" />
     <Import Project="..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets" Condition="Exists('..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets')" />
+    <Import Project="..\packages\boost.1.81.0\build\boost.targets" Condition="Exists('..\packages\boost.1.81.0\build\boost.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -165,5 +168,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\directxtk12_uwp.2022.10.18.1\build\native\directxtk12_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk12_uwp.2022.10.18.1\build\native\directxtk12_uwp.targets'))" />
     <Error Condition="!Exists('..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets'))" />
+    <Error Condition="!Exists('..\packages\boost.1.81.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.81.0\build\boost.targets'))" />
   </Target>
 </Project>

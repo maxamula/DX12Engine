@@ -6,8 +6,8 @@ namespace engine::gfx
 	{
 	public:
 
-	private:
-
+	protected:
+		
 	};
 
 	class RenderTexture : Texture

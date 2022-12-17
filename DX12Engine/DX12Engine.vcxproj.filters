@@ -2,11 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="Graphics\core.h" />
-    <ClInclude Include="resources.h" />
+    <ClInclude Include="Graphics\resources.h" />
+    <ClInclude Include="Graphics\descriptorheap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics\core.cpp" />
-    <ClCompile Include="resources.cpp" />
+    <ClCompile Include="Graphics\resources.cpp" />
+    <ClCompile Include="Graphics\descriptorheap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

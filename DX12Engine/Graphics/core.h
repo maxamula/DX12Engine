@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <string>
 
+#include "descriptorheap.h"
+
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "d3d12.lib")
 
@@ -22,6 +24,10 @@ namespace engine::gfx
 	extern IDXGIFactory7* dxgiFactory;
 	extern IDXGIAdapter4* dxgiAdapter;
 	extern ID3D12Device8* d3ddev;
+	extern D3DDescriptorHeap RTVHeap;
+	extern D3DDescriptorHeap DSVHeap;
+	extern D3DDescriptorHeap SRVHeap;
+	extern D3DDescriptorHeap UAVHeap;
 
 	void Initialize();
 	void Shutdown();

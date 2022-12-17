@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics\core.h" />
+    <ClInclude Include="resources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics\core.cpp" />
+    <ClCompile Include="resources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

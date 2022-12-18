@@ -3,10 +3,24 @@
 
 namespace engine::gfx
 {
+	struct TEXTURE_DESC
+	{
+		D3D12_SHADER_RESOURCE_VIEW_DESC* srvDesc;
+		D3D12_RESOURCE_DESC* resDesc;
+		D3D12_CLEAR_VALUE* clearValue;
+		D3D12_RESOURCE_STATES initialState{};
+	};
+
 	class Texture
 	{
 	public:
 		Texture() = default;
+		// From existing resource
+		Texture(D3D12_SHADER_RESOURCE_VIEW_DESC* srvDesc, ID3D12Resource* resource);
+		// Place resource
+		Texture(TEXTURE_DESC& desc, D3D12_RESOURCE_ALLOCATION_INFO1& info, ID3D12Heap* heap);
+		// Create texture
+		Texture(TEXTURE_DESC& desc);
 		// COPY
 		Texture(const Texture&) = delete; // = operator only
 		Texture& operator=(const Texture&);
@@ -26,7 +40,7 @@ namespace engine::gfx
 		HEAP_ALLOCATION m_srv;
 	};
 
-	class RenderTexture : Texture
+	class RenderTexture : public Texture
 	{
 		
 	};

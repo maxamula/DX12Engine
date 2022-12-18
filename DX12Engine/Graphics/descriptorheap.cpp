@@ -24,16 +24,27 @@ namespace engine::gfx
 		m_size++;
 		size_t index = GetFreeIndex();
 		m_available.set(index, false);
-		return { index, m_heap->GetCpuHandle(index), m_shaderVisible ? m_heap->GetGpuHandle(index) : D3D12_GPU_DESCRIPTOR_HANDLE{} };
+		HEAP_ALLOCATION ret = new ALLOCATION_INFO{};
+		ret->index = index;
+		ret->refs = 1;
+		ret->CPU = m_heap->GetCpuHandle(index);
+		ret->GPU = m_shaderVisible ? m_heap->GetGpuHandle(index) : D3D12_GPU_DESCRIPTOR_HANDLE{};
+		return ret;
 	}
 
-	void DescriptorHeap::Free(HEAP_ALLOCATION& allocation)
+	void DescriptorHeap::Free(HEAP_ALLOCATION allocation)
 	{
+		assert(allocation);
 		std::lock_guard<std::mutex> lock{ m_mutex };
-		if (m_available[allocation.index] == false)
+		if (m_available[allocation->index] == false)
 		{
-			m_size--;
-			m_available.set(allocation.index);
+			InterlockedDecrement(&allocation->refs);
+			if (allocation->refs == 0)
+			{
+				m_size--;
+				m_available.set(allocation->index);
+				delete allocation;
+			}	
 		}
 	}
 

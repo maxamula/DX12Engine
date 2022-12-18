@@ -6,12 +6,19 @@
 
 namespace engine::gfx
 {
-	struct HEAP_ALLOCATION
+	class DescriptorHeap;
+	struct ALLOCATION_INFO
 	{
-		size_t index;
+		friend class DescriptorHeap;
+	public:
+		void AddRef() { InterlockedIncrement(&refs); };
 		D3D12_CPU_DESCRIPTOR_HANDLE CPU;
 		D3D12_GPU_DESCRIPTOR_HANDLE GPU;
+	private:
+		size_t index;
+		ULONG64 refs;
 	};
+	typedef ALLOCATION_INFO* HEAP_ALLOCATION;
 
 	class DescriptorHeap
 	{
@@ -25,7 +32,7 @@ namespace engine::gfx
 		~DescriptorHeap();
 
 		HEAP_ALLOCATION Allocate();
-		void Free(HEAP_ALLOCATION& allocation);
+		void Free(HEAP_ALLOCATION allocation);
 		inline DirectX::DescriptorHeap* Heap() const { return m_heap.get(); }
 		inline void Release() { m_heap.reset(); }
 

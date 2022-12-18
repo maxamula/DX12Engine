@@ -42,6 +42,7 @@ namespace engine::gfx
 		RELEASE(dxgiFactory);
 		RELEASE(dxgiAdapter);
 		RELEASE(d3ddev);
+		d3dcmd.Release();
 		RTVHeap.Release();
 		DSVHeap.Release();
 		SRVHeap.Release();

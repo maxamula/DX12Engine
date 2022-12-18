@@ -46,6 +46,7 @@ namespace engine::gfx
 	Texture::Texture(Texture&& o)
 	{
 		assert(&o != this);
+		Release();
 		m_res = MOVE(m_res);
 		m_srv = MOVE(m_srv);
 	}
@@ -53,6 +54,7 @@ namespace engine::gfx
 	Texture& Texture::operator=(Texture&& o)
 	{
 		assert(&o != this);
+		Release();
 		m_res = MOVE(m_res);
 		m_srv = MOVE(m_srv);
 		return *this;
@@ -65,4 +67,40 @@ namespace engine::gfx
 	}
 
 	////// RENDER TEXTURE ///////////////////
+
+	RenderTexture::RenderTexture(TEXTURE_DESC& desc)
+	{
+
+	}
+	// COPY
+	RenderTexture& RenderTexture::operator=(const RenderTexture& o)
+	{
+		Texture::operator=(o);
+		m_mipCount = o.m_mipCount;
+		for (uint16_t i = 0; i < m_mipCount; i++)
+		{
+			m_rtv[i] = o.m_rtv[i];
+			o.m_rtv[i]->AddRef();
+		}
+	}
+	// MOVE
+	RenderTexture::RenderTexture(RenderTexture&& o)
+	{
+		Texture::operator=(o);
+		m_mipCount = MOVE(o.m_mipCount);
+		for (uint16_t i = 0; i < m_mipCount; i++)
+		{
+			m_rtv[i] = MOVE(o.m_rtv[i]);
+		}		
+	}
+	RenderTexture& RenderTexture::operator=(RenderTexture&& o)
+	{
+		Texture::operator=(o);
+		m_mipCount = MOVE(o.m_mipCount);
+		for (uint16_t i = 0; i < m_mipCount; i++)
+		{
+			m_rtv[i] = MOVE(o.m_rtv[i]);
+		}
+		return *this;
+	}
 }

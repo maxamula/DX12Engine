@@ -42,7 +42,21 @@ namespace engine::gfx
 
 	class RenderTexture : public Texture
 	{
-		
+	public:
+		RenderTexture() = default;
+		RenderTexture(TEXTURE_DESC& desc);
+		// COPY
+		RenderTexture(const RenderTexture&) = delete;
+		RenderTexture& operator=(const RenderTexture&);
+		// MOVE
+		RenderTexture(RenderTexture&&);
+		RenderTexture& operator=(RenderTexture&&);
+		// DESTRUCTOR
+		~RenderTexture() { Release(); }
+	private:
+		HEAP_ALLOCATION m_rtv[Texture::maxMips]{};
+		uint32_t m_mipCount = 0;
+
 	};
 
 	class DepthTexture : Texture

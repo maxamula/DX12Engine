@@ -8,10 +8,12 @@ namespace engine::gfx
 
 	ID3D12Device8* d3ddev = NULL;
 
-	D3DDescriptorHeap RTVHeap;
-	D3DDescriptorHeap DSVHeap;
-	D3DDescriptorHeap SRVHeap;
-	D3DDescriptorHeap UAVHeap;
+	CommandQueue d3dcmd;
+
+	DescriptorHeap RTVHeap;
+	DescriptorHeap DSVHeap;
+	DescriptorHeap SRVHeap;
+	DescriptorHeap UAVHeap;
 
 	void Initialize()
 	{
@@ -28,10 +30,11 @@ namespace engine::gfx
 		assert(dxgiFactory->EnumAdapterByGpuPreference(0, DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, __uuidof(IDXGIAdapter4), (void**)&dxgiAdapter) == S_OK);
 		assert(D3D12CreateDevice(dxgiAdapter, D3D_FEATURE_LEVEL_12_0, __uuidof(ID3D12Device8), (void**)&d3ddev) == S_OK);
 		d3ddev->SetName(L"MAIN_DEVICE");
-		new (&RTVHeap) D3DDescriptorHeap(d3ddev, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, D3D12_DESCRIPTOR_HEAP_FLAG_NONE, 512);
-		new (&DSVHeap) D3DDescriptorHeap(d3ddev, D3D12_DESCRIPTOR_HEAP_TYPE_DSV, D3D12_DESCRIPTOR_HEAP_FLAG_NONE, 512);
-		new (&SRVHeap) D3DDescriptorHeap(d3ddev, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE, 4096);
-		new (&UAVHeap) D3DDescriptorHeap(d3ddev, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE, 512);
+		new (&d3dcmd) CommandQueue(D3D12_COMMAND_LIST_TYPE_DIRECT);
+		new (&RTVHeap) DescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, D3D12_DESCRIPTOR_HEAP_FLAG_NONE, 512);
+		new (&DSVHeap) DescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_DSV, D3D12_DESCRIPTOR_HEAP_FLAG_NONE, 512);
+		new (&SRVHeap) DescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE, 4096);
+		new (&UAVHeap) DescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE, 512);
 	}
 
 	void Shutdown()

@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <string>
 
+#include "cmdqueue.h"
 #include "descriptorheap.h"
 
 #pragma comment(lib, "dxgi.lib")
@@ -15,19 +16,22 @@
 #define MOVE(a) a; a = {}; 
 
 #define RELEASE(res) if(res){res->Release(); res = NULL;}
-#define FRAMEBUFFERS_COUNT 3
 
 using namespace Microsoft::WRL;
 
 namespace engine::gfx
 {
+	class CommandQueue;
+	class DescriptorHeap;
+
 	extern IDXGIFactory7* dxgiFactory;
 	extern IDXGIAdapter4* dxgiAdapter;
 	extern ID3D12Device8* d3ddev;
-	extern D3DDescriptorHeap RTVHeap;
-	extern D3DDescriptorHeap DSVHeap;
-	extern D3DDescriptorHeap SRVHeap;
-	extern D3DDescriptorHeap UAVHeap;
+	extern CommandQueue d3dcmd;
+	extern DescriptorHeap RTVHeap;
+	extern DescriptorHeap DSVHeap;
+	extern DescriptorHeap SRVHeap;
+	extern DescriptorHeap UAVHeap;
 
 	void Initialize();
 	void Shutdown();

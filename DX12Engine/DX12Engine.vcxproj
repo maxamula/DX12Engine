@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Graphics\cmdqueue.h" />
     <ClInclude Include="Graphics\descriptorheap.h" />
     <ClInclude Include="Graphics\core.h" />
     <ClInclude Include="Graphics\resources.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Graphics\cmdqueue.cpp" />
     <ClCompile Include="Graphics\descriptorheap.cpp" />
     <ClCompile Include="Graphics\core.cpp" />
     <ClCompile Include="Graphics\resources.cpp" />

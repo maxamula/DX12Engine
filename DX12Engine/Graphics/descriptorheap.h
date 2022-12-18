@@ -13,16 +13,16 @@ namespace engine::gfx
 		D3D12_GPU_DESCRIPTOR_HANDLE GPU;
 	};
 
-	class D3DDescriptorHeap
+	class DescriptorHeap
 	{
 	public:
-		D3DDescriptorHeap() = default;
-		D3DDescriptorHeap(const D3DDescriptorHeap&) = delete;
-		D3DDescriptorHeap& operator=(const D3DDescriptorHeap&) = delete;
-		D3DDescriptorHeap(D3DDescriptorHeap&&) = delete;
-		D3DDescriptorHeap& operator=(D3DDescriptorHeap&&) = delete;
-		D3DDescriptorHeap(ID3D12Device* device, D3D12_DESCRIPTOR_HEAP_TYPE type, D3D12_DESCRIPTOR_HEAP_FLAGS flags, size_t capacity);
-		~D3DDescriptorHeap();
+		DescriptorHeap() = default;
+		DescriptorHeap(const DescriptorHeap&) = delete;
+		DescriptorHeap& operator=(const DescriptorHeap&) = delete;
+		DescriptorHeap(DescriptorHeap&&) = delete;
+		DescriptorHeap& operator=(DescriptorHeap&&) = delete;
+		DescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE type, D3D12_DESCRIPTOR_HEAP_FLAGS flags, size_t capacity);
+		~DescriptorHeap();
 
 		HEAP_ALLOCATION Allocate();
 		void Free(HEAP_ALLOCATION& allocation);

@@ -3,8 +3,6 @@
 
 namespace engine::gfx
 {
-	constexpr int FRAMEBUFFERS_COUNT = 3;
-
 	class CommandQueue
 	{
 	public:

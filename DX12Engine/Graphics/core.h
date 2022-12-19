@@ -19,6 +19,8 @@
 
 using namespace Microsoft::WRL;
 
+constexpr int FRAMEBUFFERS_COUNT = 3;
+
 namespace engine::gfx
 {
 	class CommandQueue;

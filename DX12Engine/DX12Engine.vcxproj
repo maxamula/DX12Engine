@@ -23,12 +23,14 @@
     <ClInclude Include="Graphics\descriptorheap.h" />
     <ClInclude Include="Graphics\core.h" />
     <ClInclude Include="Graphics\resources.h" />
+    <ClInclude Include="Graphics\rendersurface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics\cmdqueue.cpp" />
     <ClCompile Include="Graphics\descriptorheap.cpp" />
     <ClCompile Include="Graphics\core.cpp" />
     <ClCompile Include="Graphics\resources.cpp" />
+    <ClCompile Include="Graphics\rendersurface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

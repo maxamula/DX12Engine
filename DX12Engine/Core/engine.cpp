@@ -1,5 +1,6 @@
 #include "engine.h"
-#include "Graphics/core.h"
+#include "../Graphics/core.h"
+#include "window.h"
 
 namespace engine
 {
@@ -8,11 +9,13 @@ namespace engine
 
 	void Initialize()
 	{
+		Window::Initialize();
 		gfx::Initialize();
 	}
 
 	void Shutdown()
 	{
 		gfx::Shutdown();
+		Window::Shutdown();	
 	}
 }

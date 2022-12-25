@@ -35,6 +35,8 @@ namespace engine::gfx
 		new (&DSVHeap) DescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_DSV, D3D12_DESCRIPTOR_HEAP_FLAG_NONE, 512);
 		new (&SRVHeap) DescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE, 4096);
 		new (&UAVHeap) DescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE, 512);
+
+		InitializeShaders();
 	}
 
 	void Shutdown()
@@ -47,5 +49,6 @@ namespace engine::gfx
 		DSVHeap.Release();
 		SRVHeap.Release();
 		UAVHeap.Release();
+		ShutdownShaders();
 	}
 }

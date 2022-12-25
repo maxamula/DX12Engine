@@ -1,7 +1,15 @@
 ﻿#include <Windows.h>
-#include "Sandbox.h"
-#include <string>
-int gg = 0; // 14
+#include "engine.h"
+#include <dxcapi.h>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <filesystem>
+#include <d3d12.h>
+#include <D3DCompiler.h>
+
+#pragma comment(lib, "dxgi.lib")
+#pragma comment(lib, "d3d12.lib")
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -9,8 +17,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
-    int a = 4;
-    int b = 12;
-    b = std::move(a);
-    int p = 2 + 2;
+    engine::Initialize();
+    engine::Shutdown();
+    while(true){}
 }

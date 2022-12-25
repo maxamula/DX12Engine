@@ -6,6 +6,14 @@
     <ClInclude Include="Graphics\descriptorheap.h" />
     <ClInclude Include="Graphics\cmdqueue.h" />
     <ClInclude Include="Graphics\rendersurface.h" />
+    <ClInclude Include="Graphics\rootsig.h" />
+    <ClInclude Include="Graphics\pipilinestate.h" />
+    <ClInclude Include="Graphics\shaders.h" />
+    <ClInclude Include="Content\ContentManager.h" />
+    <ClInclude Include="API\engine.h" />
+    <ClInclude Include="API\common.h" />
+    <ClInclude Include="engine.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics\core.cpp" />
@@ -13,8 +21,20 @@
     <ClCompile Include="Graphics\descriptorheap.cpp" />
     <ClCompile Include="Graphics\cmdqueue.cpp" />
     <ClCompile Include="Graphics\rendersurface.cpp" />
+    <ClCompile Include="Graphics\rootsig.cpp" />
+    <ClCompile Include="Graphics\pipilinestate.cpp" />
+    <ClCompile Include="Graphics\shaders.cpp" />
+    <ClCompile Include="Content\ContentManager.cpp" />
+    <ClCompile Include="engine.cpp" />
+    <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Graphics\Shaders\FSTriangle.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Engine.rc" />
   </ItemGroup>
 </Project>
